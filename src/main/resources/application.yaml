@@ -1,0 +1,35 @@
+panicbutton:
+  opsgenie:
+    api-key: ${OPSGENIE_API_KEY:foo}
+    url: ${OPSGENIE_BASE_URL:https://api.opsgenie.com/v2}
+  slack:
+    url: ${SLACK_BASE_URL:foo}
+    bot-token: ${SLACK_BOT_TOKEN:foo}
+  update-interval: ${UPDATE_INTERVAL:300000}
+  # Use the [ ] to escape the space in the key
+  # Note that opsgenie team names will automatically ignore the _schedule suffix. Leave that off here.
+  teamid-to-slack-channel-id-mapping:
+    "[Incident Commander]": C05Q7T4FMRV
+    team2: BAR
+  teamid-to-slack-usergroup-mapping:
+    "[Incident Commander]": S06PRUZHE9M
+    team2: BAR
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  quartz:
+    autostartup: false
+panicbutton:
+  opsgenie:
+    api-key: NONE
+    url: OPSGENIEURL
+    slack:
+      url: SLACKURL
+      bot-token: BOTTOKEN
+    update-interval: 300000
+    # Use the [ ] to escape the space in the key
+    teamid-to-slack-channel-id-mapping:
+      team2: BAR
